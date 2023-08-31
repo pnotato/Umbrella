@@ -1,0 +1,55 @@
+
+body {
+    font-size: 1rem;
+    font-family: "Trebuchet MS";
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.background-image {
+    background-color: #d14545;
+    background-image: linear-gradient(316deg, #d14545 0%, #ff9933 74%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.aligned-text{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.large-text{
+    font-size: 5rem;
+    position: relative;
+    top: 15%;
+    text-align: center;
+}
+
+.menu-text {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.menu-buttons {
+    text-align: right;
+    padding: 10px 10px;
+
+}
+
+.button {
+    position: relative;
+    top: 5px;
+}
+
+input[type="text"], textarea {
+
+    background-color : transparent;
+    border-color: transparent;
+
+    border-radius: 10px;
+  }
