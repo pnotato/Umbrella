@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+
+<h1>Where are you?</h1>
+
+<form action="/location" method="post">
+    <input autocomplete="off" name="location" placeholder="Enter your location" required type="text">
+
+</form>
+
+
+{% endblock %}

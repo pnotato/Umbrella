@@ -1,5 +1,9 @@
-from flask import Flask, redirect, render_template, request
+## I got help from the CS50.ai for the initialize page, on session.get, and initilizing the session dictionary
+
+from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
+
+from helpers import weather
 
 app = Flask(__name__)
 
@@ -15,14 +19,24 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def index():
-    return render_template("index.html")
-
-@app.route("/edit", methods=["POST","GET"])
-def edit():
     if request.method == "POST":
-        return redirect("/edit")
+        location = weather(request.form.get("location"))             ## calls the api function
+
+        if location != None:                                        ## as long as theres a match
+            session['givenloc'] = True                              ## give access to the index page and refresh
+            return redirect("/")
+
+    if session.get('givenloc') == None:                             ## if there was no match, go back to the initialize page
+        return render_template("initialize.html")
+    else:                                                           ## elsewise, go to the index.
+        return render_template("index.html")
+
+@app.route("/location", methods=["POST","GET"])
+def location():
+    if request.method == "POST":
+        return redirect("/location")
     else:
-        return render_template("edit.html")
-    
+        return render_template("location.html")
+

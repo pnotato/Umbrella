@@ -10,18 +10,13 @@
         <title>Umbrella // Home</title>
     </head>
     <body>
-      <div class="background-image">
         {% block main %}{% endblock %}
-      </div>
     </body>
     <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" style="margin-left: 20px; color:white;">Umbrella</a>
+        <a class="navbar-brand" href="/" style="margin-left: 20px; color:white;">Umbrella</a>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Do I need one?</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Forecast</a>
             </li>
@@ -29,14 +24,14 @@
                 <a class="nav-link" href="#">Updates</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Location</a>
+                <a class="nav-link" href="/location">Location</a>
               </li>
               </div>
             </li>
           </ul>
         </div>
         <span class="navbar-text" style="margin-right: 20px;">
-            It's currently <div style="color: yellow; display: inline;">20</div> Degrees Celsius in Richmond, BC!
+            It's currently <div style="color: yellow; display: inline;">20</div> Degrees Celsius in Richmond, British Columbia!
         </span>
 
       </nav>
