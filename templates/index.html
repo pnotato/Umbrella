@@ -2,9 +2,9 @@
 
 {% block main %}
 
-<div class="background-image">
-    <h1>Leave the umbrella at home.</h1>
-<div class="temperature">The weather is <div style="color: yellow; display: inline;">sunny</div>.</div>
+<div class="background-image" style="background-image: url({{ selection['background'] }})">
+    <h1>{{ selection['advice'] }}</h1>
+<div class="temperature">The weather is <div style="color: {{ selection['text'] }}; display: inline;">{{ location["weather"].lower() }}</div>.</div>
   </div>
 
 {% endblock %}

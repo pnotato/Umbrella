@@ -1,0 +1,39 @@
+<!--https://getbootstrap.com/docs/4.0/content/tables/-->
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="background-image" style="background-image: url({{ selection['background'] }})">
+    <h1>Forecast</h1>
+    <div class="report">
+      <table class="table table-sm mx-auto" style="margin: 10px; color: white; table-layout: fixed;">
+        <thead>
+          <tr>
+            <th scope="col">Right Now</th>
+            <th scope="col">Tomorrow</th>
+            <th scope="col">2 Days From Now</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr>
+            <td>{{ locationunit }}&deg;{{ textunit }}</td>
+            <td>{{ forecastunit1 }}&deg;{{ textunit }}</td>
+            <td>{{ forecastunit2 }}&deg;{{ textunit }}</td>
+          </tr>
+          <tr>
+            <td><img src="{{ location['icon'] }}"></td>
+            <td><img src="{{ forecast[0]['icon'] }}"></td>
+            <td><img src="{{ forecast[1]['icon'] }}"></td>
+          </tr>
+          <tr>
+            <td>{{ location["weather"] }}</td>
+            <td>{{ forecast[0]["weather"] }}</td>
+            <td>{{ forecast[1]["weather"] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+{% endblock %}

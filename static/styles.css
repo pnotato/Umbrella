@@ -1,4 +1,5 @@
 /* For dark filter: https://coder-coder.com/background-image-opacity/ */
+/* For transparent table: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_border_style */
 body {
     font-size: 1rem;
     font-family: "Trebuchet MS";
@@ -44,15 +45,17 @@ input {
 
 h1 {
     position: relative;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px;
     top: 20vh;
     font-weight: 900;
     font-size: 18vh;
     color: white;
 }
 
-
+table, th, td {
+    border: transparent;
+    border-collapse: collapse;
+  }
 
 .temperature {
     margin: 10px;
@@ -60,5 +63,12 @@ h1 {
     bottom: 100px;
     left: 15%;
     right: 15%;
+    font-size: 3vh;
+}
+
+.report {
+    margin: 10px;
+    position: relative;
+    top: 200px;
     font-size: 3vh;
 }

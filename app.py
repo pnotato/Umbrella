@@ -1,11 +1,12 @@
 ## I got help from the CS50.ai for the initialize page, on session.get, and initilizing the session dictionary
-
+## https://www.w3schools.com/python/python_variables_global.asp
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 
-from helpers import weather
+from helpers import weather, adjust, forecastpredict
 
 app = Flask(__name__)
+check = ""
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -21,22 +22,84 @@ def after_request(response):
 
 @app.route("/", methods=["GET","POST"])
 def index():
+    global check
     if request.method == "POST":
-        location = weather(request.form.get("location"))             ## calls the api function
+        check = weather(request.form.get("location"))
 
-        if location != None:                                        ## as long as theres a match
-            session['givenloc'] = True                              ## give access to the index page and refresh
+        if check != None:
+            session['givenloc'] = check["name"]
             return redirect("/")
 
-    if session.get('givenloc') == None:                             ## if there was no match, go back to the initialize page
+    if session.get('givenloc') == None:
         return render_template("initialize.html")
-    else:                                                           ## elsewise, go to the index.
-        return render_template("index.html")
+    else:
+        location = weather(session['givenloc'])
+        selection = adjust(location)
+        if session.get('units') == "Imperial":
+            currenttemp = location["far"]
+            unit = "Fahrenheit"
+        else:
+            currenttemp = location["celsius"]
+            unit = "Celsius"
+
+        return render_template("index.html", location=location, selection=selection, currenttemp=currenttemp, unit=unit)
 
 @app.route("/location", methods=["POST","GET"])
 def location():
     if request.method == "POST":
+        check = weather(request.form.get("location"))
+
+        if check != None:
+            session['givenloc'] = check["name"]
+            return redirect("/")
         return redirect("/location")
+
     else:
-        return render_template("location.html")
+        location = weather(session['givenloc'])
+        if session.get('units') == "Imperial":
+            currenttemp = location["far"]
+            unit = "Fahrenheit"
+        else:
+            currenttemp = location["celsius"]
+            unit = "Celsius"
+        location = weather(session['givenloc'])
+        return render_template("location.html", location=location, currenttemp=currenttemp, unit=unit)
+
+@app.route("/forecast")
+def forecast():
+    location = weather(session['givenloc'])
+    selection = adjust(location)
+    forecast = forecastpredict(location)
+    if session.get('units') == "Imperial":
+        textunit = "F"
+        locationunit = location["far"]
+        forecastunit1 = forecast[0]['avgtempf']
+        forecastunit2 = forecast[1]['avgtempf']
+    else:
+        textunit = "C"
+        locationunit = location["celsius"]
+        forecastunit1 = forecast[0]['avgtempc']
+        forecastunit2 = forecast[1]['avgtempc']
+    if session.get('units') == "Imperial":
+        currenttemp = location["far"]
+        unit = "Fahrenheit"
+    else:
+        currenttemp = location["celsius"]
+        unit = "Celsius"
+
+    return render_template("forecast.html", location=location, selection=selection,
+                           forecast=forecast, unit=unit, textunit=textunit, locationunit=locationunit,
+                             forecastunit1=forecastunit1, forecastunit2=forecastunit2, currenttemp=currenttemp)
+
+@app.route("/units")
+def units():
+    ## default is Metric
+    if request.method == "GET":
+        if session.get('units') == "Imperial":
+            session["units"] = "Metric"
+        elif session.get('units') == "Metric":
+            session["units"] = "Imperial"
+        else:
+            session["units"] = "Imperial"
+        return redirect("/")
 

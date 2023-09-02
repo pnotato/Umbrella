@@ -13,25 +13,28 @@
         {% block main %}{% endblock %}
     </body>
     <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="/" style="margin-left: 20px; color:white;">Umbrella</a>
+        <a class="navbar-brand" style="margin-left: 20px; color:white;">Umbrella</a>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Forecast</a>
+              <a class="nav-link" href="/">Do You Need One?</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Updates</a>
+              <a class="nav-link" href="/forecast">Forecast</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/location">Your Location</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/location">Location</a>
+                <a class="nav-link" href="/units">&deg;C/&deg;F</a>
               </li>
               </div>
             </li>
           </ul>
         </div>
         <span class="navbar-text" style="margin-right: 20px;">
-            It's currently <div style="color: yellow; display: inline;">20</div> Degrees Celsius in Richmond, British Columbia!
+            It's currently <div style="color: yellow; display: inline;">{{ currenttemp }}</div> Degrees {{ unit }} in {{ location["name"] }}, {{ location["region"] }}!
         </span>
 
       </nav>
