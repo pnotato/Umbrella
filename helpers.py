@@ -8,7 +8,7 @@ def weather(place):
 		url = "https://weatherapi-com.p.rapidapi.com/current.json"
 		querystring = {"q":place} ## location currently set to boston
 		headers = {
-			"X-RapidAPI-Key": "653d55c5a8mshf7c312e8a46d46ap152195jsn16c8aa3dde4d",
+			"X-RapidAPI-Key": "",
 			"X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
 		}
 
@@ -70,7 +70,7 @@ def forecastpredict(location):
 	querystring = {"q":location,"days":"3"}
 
 	headers = {
-		"X-RapidAPI-Key": "653d55c5a8mshf7c312e8a46d46ap152195jsn16c8aa3dde4d",
+		"X-RapidAPI-Key": "",
 		"X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
 	}
 
