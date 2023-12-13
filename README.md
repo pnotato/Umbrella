@@ -4,4 +4,3 @@ A weather web app. Takes the current weather based on an inputted location and d
 
 Built with HTML, CSS with the Bootstrap library, and Python with the Flask framework.
 
-My final project submission for CS50x.
